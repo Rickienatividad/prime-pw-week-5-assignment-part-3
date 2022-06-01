@@ -1,10 +1,12 @@
 console.log('***** Music Collection *****')
 let collection = [];
 function addToCollection(title, artist, yearPublished) {
-    let album = {};
-    album.title = [title];
-    album.artist = [artist];
-    album.year = [yearPublished];
+    let album = {
+    title: title,
+    artist: artist,
+    year: yearPublished
+    }
+    
     collection.push(album);
     return album;
 }
@@ -24,25 +26,22 @@ function showCollection(array){
     }
 }
 showCollection(collection);
+let matchArray = [];
 
 function findByArtist(artist){
-    let emptyArray = [];
-    let matchArray = [];
     for(let i=0; i<collection.length; i++){
-        if(String(collection[i].artist) == artist){
-            matchArray.push(String(collection[i].artist));
-            return collection[i].artist;
+        if(collection[i].artist === artist){
+            matchArray.push(collection[i])
         }
+        
     }
-    for(let i=0; i<collection.length; i++){
-        if(String(collection[i].artist) != artist){
-            return emptyArray;
-        }
-    }
-} 
+    return matchArray;     
+}
+
 
 console.log(findByArtist('Alice in Chains'));
 console.log(findByArtist('Genesis'));
-findByArtist('Metallica');
+console.log(findByArtist('Metallica'));
+
 
 

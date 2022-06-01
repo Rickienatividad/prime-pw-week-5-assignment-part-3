@@ -22,26 +22,38 @@ console.log(collection);
 function showCollection(array){
     console.log(`There are`, array.length, `items in the list`);
     for(let i=0; i<array.length; i++){
-        console.log(String(array[i].title), `published by`, String(array[i].artist), `in`, String(array[i].year));
+        console.log(array[i].title, `published by`, array[i].artist, `in`, String(array[i].year));
     }
 }
 showCollection(collection);
-let matchArray = [];
 
+
+let matchArray = [];
 function findByArtist(artist){
     for(let i=0; i<collection.length; i++){
         if(collection[i].artist === artist){
             matchArray.push(collection[i])
         }
-        
     }
     return matchArray;     
 }
 
 
-console.log(findByArtist('Alice in Chains'));
-console.log(findByArtist('Genesis'));
-console.log(findByArtist('Metallica'));
+console.log(`array should be empty: No Genesis in Collection`,findByArtist('Genesis'));
+findByArtist('Alice in Chains');
+findByArtist('Metallica');
+console.log(`found Metallica and Alice in Chains in Collection:`,findByArtist());
 
+let completeMatch = [];
+function search(artist, year){
+    for(let i=0; i<collection.length; i++){
+        if(collection[i].artist === artist && collection[i].year === year){
+            completeMatch.push(collection[i]);
+        }
+    }
+    return completeMatch;
+}
 
+console.log(`no matching criteria. Empty array:`,search('abc', 1943));
+console.log(`Matching artist and year found:`, search('Korn', 1998));
 

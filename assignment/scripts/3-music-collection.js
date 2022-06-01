@@ -25,18 +25,24 @@ function showCollection(array){
 }
 showCollection(collection);
 
-let matchArray = [];
-let emptyArray = [];
 function findByArtist(artist){
+    let emptyArray = [];
+    let matchArray = [];
     for(let i=0; i<collection.length; i++){
         if(String(collection[i].artist) == artist){
             matchArray.push(String(collection[i].artist));
-            console.log(matchArray);
+            return collection[i].artist;
         }
     }
-    if(matchArray.length === 0){
-        console.log(emptyArray);
+    for(let i=0; i<collection.length; i++){
+        if(String(collection[i].artist) != artist){
+            return emptyArray;
+        }
     }
-}
-findByArtist('Korn');
+} 
+
+console.log(findByArtist('Alice in Chains'));
+console.log(findByArtist('Genesis'));
+findByArtist('Metallica');
+
 

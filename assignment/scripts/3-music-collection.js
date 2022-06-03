@@ -20,28 +20,33 @@ console.log(addToCollection(`Peace Sells, But Who's Buying?`, 'Megadeth', 1986))
 console.log(collection);
 
 function showCollection(array){
+    console.log(`There are ${array.length} items in the list:`);
     for(let i=0; i<array.length; i++){
         console.log(`${array[i].title} published by ${array[i].artist} in ${array[i].year}`);
     }
-    return (`There are ${array.length} items in the list`);
 }
-console.log(showCollection(collection));
+showCollection(collection);
 
 
 let matchArray = [];
+let emptyArray = [];
 function findByArtist(artist){
     for(let i=0; i<collection.length; i++){
         if(collection[i].artist === artist){
-            matchArray.push(collection[i]);    
+            matchArray.push(collection[i].artist);  
         }
     }
-    return matchArray;    
+    if(matchArray.includes(artist)){
+        return matchArray;
+    }else{
+        return emptyArray;
+    }  
 }
 
-
-console.log(findByArtist('Genesis'));
-console.log(findByArtist('Alice in Chains'));
-console.log(findByArtist('Metallica'));
+console.log(`in findByArtist()`,findByArtist('Genesis'));
+console.log(`in findByArtist()`,findByArtist('Alice in Chains'));
+console.log(`in findByArtist()`,findByArtist('Genesis'));
+console.log(`in findByArtist()`,findByArtist('Metallica'));
 
 let completeMatch = [];
 function search(artist, year){
@@ -53,7 +58,7 @@ function search(artist, year){
     return completeMatch;
 }
 
-console.log(`no matching criteria. Empty array:`,search('abc', 1943));
-console.log('matching artist, incorrect year. Empty array:', search('Korn', 1993));
-console.log(`Matching artist and year found:`, search('Korn', 1998));
+console.log(`in search(): no matching criteria. Empty array:`,search('abc', 1943));
+console.log('in search(): matching artist, incorrect year. Empty array:', search('Korn', 1993));
+console.log(`in search(): matching artist and year found:`, search('Korn', 1998));
 

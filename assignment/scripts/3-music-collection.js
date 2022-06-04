@@ -33,7 +33,7 @@ let emptyArray = [];
 function findByArtist(artist){
     for(let i=0; i<collection.length; i++){
         if(collection[i].artist === artist){
-            matchArray.push(collection[i].artist);  
+            matchArray.push(collection[i].artist,collection[i]);  
         }
     }
     if(matchArray.includes(artist)){
@@ -49,16 +49,27 @@ console.log(`in findByArtist()`,findByArtist('Genesis'));
 console.log(`in findByArtist()`,findByArtist('Metallica'));
 
 let completeMatch = [];
+let noMatch = [];
 function search(artist, year){
     for(let i=0; i<collection.length; i++){
         if(collection[i].artist === artist && collection[i].year === year){
-            completeMatch.push(collection[i]);
+            completeMatch.push(collection[i].artist, collection[i].year);
         }
     }
-    return completeMatch;
+    //return completeMatch;
+    if(completeMatch.includes(artist) && completeMatch.includes(year)){
+        return completeMatch;
+    }else if(typeof(artist) === 'undefined' || typeof(year) === 'undefined'){
+        return collection;
+    }else{
+        return noMatch;
+    }
 }
 
-console.log(`in search(): no matching criteria. Empty array:`,search('abc', 1943));
-console.log('in search(): matching artist, incorrect year. Empty array:', search('Korn', 1993));
+console.log(`in search(): no search criteria input. Display collection array:`,search());
 console.log(`in search(): matching artist and year found:`, search('Korn', 1998));
+console.log('in search(): matching artist, incorrect year. Empty array:', search('Korn', 1993));
+
+
+
 

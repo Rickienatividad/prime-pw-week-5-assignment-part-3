@@ -1,10 +1,10 @@
 console.log('***** Music Collection *****')
 let collection = [];
-function addToCollection(title, artist, yearPublished) {
+function addToCollection(title, artist, yearPublished,) {
     let album = {
     title: title,
     artist: artist,
-    year: yearPublished
+    year: yearPublished,
     }
     
     collection.push(album);
@@ -56,7 +56,7 @@ function search(artist, year){
             completeMatch.push(collection[i].artist, collection[i].year);
         }
     }
-    //return completeMatch;
+   
     if(completeMatch.includes(artist) && completeMatch.includes(year)){
         return completeMatch;
     }else if(typeof(artist) === 'undefined' || typeof(year) === 'undefined'){
